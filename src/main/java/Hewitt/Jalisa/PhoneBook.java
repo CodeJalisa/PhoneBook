@@ -7,34 +7,38 @@ import java.util.HashMap;
  */
 public class PhoneBook {
 
-    HashMap<String , String> phoneBook = new HashMap<String, String>();
+    HashMap<String, String> phoneBook = new HashMap<String, String>();
 
-    public PhoneBook(){}
-
-    public void addContact(String name, String num){
-        phoneBook.put(name,num);
+    public PhoneBook() {
     }
 
-    public void removeContact(String name, String num){
+    public void addContact(String name, String num) {
+        phoneBook.put(name, num);
+    }
+
+    public void removeContact(String name, String num) {
         phoneBook.remove(name, num);
     }
 
-    public String lookUp(String name){
+    public String lookUp(String name) {
         String number = phoneBook.get(name);
         return number;
     }
 
-    public String allNames(){
-        for(String x : phoneBook.keySet()){
+    public String allNames() {
+        for (String x : phoneBook.keySet()) {
             return x;
         }
         return null;
     }
 
+    public String reverseLookUp(String num) {
+        for (String name : phoneBook.keySet()) {
+            if (phoneBook.get(name) == num) {
+                return name;
+           }
+        }
+        return null;
 
-
-
-
-
-
+    }
 }

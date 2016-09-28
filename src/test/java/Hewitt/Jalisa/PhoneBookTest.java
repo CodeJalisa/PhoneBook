@@ -32,7 +32,7 @@ public class PhoneBookTest {
     }
 
     @Test
-    public void lookUp(){
+    public void lookUpTest(){
         PhoneBook testLookUp = new PhoneBook();
         testLookUp.addContact("Jalisa", "555555555");
         testLookUp.addContact("Aaron", "302555555");
@@ -40,6 +40,16 @@ public class PhoneBookTest {
         String actual = testLookUp.lookUp("Aaron");
         assertEquals("Should have showed Aarons number from phone book", expected, actual);
 
+    }
+
+    @Test
+    public void revereLookUpTest(){
+        PhoneBook testReverseLookUp = new PhoneBook();
+        testReverseLookUp.addContact("Jalisa", "555555555");
+        testReverseLookUp.addContact("Aaron", "302555555");
+        String expected = "Jalisa";
+        String actual = testReverseLookUp.reverseLookUp("555555555");
+        assertEquals("Should have showed Jalisa's name from phone book", expected, actual);
     }
 
 }
