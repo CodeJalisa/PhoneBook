@@ -1,5 +1,6 @@
 package Hewitt.Jalisa;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -7,22 +8,45 @@ import java.util.HashMap;
  */
 public class PhoneBook {
 
-    HashMap<String, String> phoneBook = new HashMap<String, String>();
+    HashMap<String, ArrayList<String>> phoneBook = new HashMap<>();
 
     public PhoneBook() {
     }
 
     public void addContact(String name, String num) {
-        phoneBook.put(name, num);
+        ArrayList<String> newNums = new ArrayList<>();
+        newNums.add(num);
+        phoneBook.put(name, newNums);
+    }
+
+    public void addNum(String name, String newNum){
+        for(String existing : phoneBook.keySet()){
+            if(existing == name){
+                ArrayList<String> addNum = phoneBook.get(name);
+                addNum.add(newNum);
+            }
+        }
     }
 
     public void removeContact(String name, String num) {
         phoneBook.remove(name, num);
     }
 
+    public void removeNum(String name, String num){
+        for(String existing : phoneBook.keySet()){
+            if(existing == name){
+                ArrayList<String> addNum = phoneBook.get(name);
+                if(addNum.contains(num)){
+                    addNum.remove(num);
+                }
+
+            }
+        }
+    }
+
     public String lookUp(String name) {
-        String number = phoneBook.get(name);
-        return number;
+        ArrayList<String> number = phoneBook.get(name);
+        return number.toString();
     }
 
     public String allNames() {
@@ -34,7 +58,8 @@ public class PhoneBook {
 
     public String reverseLookUp(String num) {
         for (String name : phoneBook.keySet()) {
-            if (phoneBook.get(name) == num) {
+            ArrayList<String> checkNum = phoneBook.get(name);
+            if (checkNum.contains(num)) {
                 return name;
            }
         }
